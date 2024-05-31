@@ -1,6 +1,6 @@
 const express = require("express"); // web framework for node.js that is express.js
 
-const routes = require("./routes/index");
+const routes = require("./routes/index"); // this is the routes file where all the routes are defined
 
 const morgan = require("morgan"); //HTTP request logger middleware for node.js it gives us the data on server side when the user send request to the server and it collects the informations like what end point was hit and what was the response and response time etc
 
@@ -18,13 +18,13 @@ const cors = require("cors");
 
 const app = express(); // now our app is just created
 
-
-
-app.use(cors({
+app.use(
+  cors({
     origin: "*",
     methods: ["GET", "PATCH", "POST", "DELETE", "PUT"],
     credentials: true,
-}))
+  })
+);
 app.use(express.json({ limit: "10kb" }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -37,7 +37,7 @@ if (process.env.NODE_ENV === "development") {
 const limiter = rateLimit({
   max: 3000,
   windowMs: 60 * 60 * 1000, // in one hour
-  messagge: "Too many requests from this IP, Please try again in an hour",
+  message: "Too many requests from this IP, Please try again in an hour",
 });
 
 app.use("/kurakani", limiter);
