@@ -46,7 +46,7 @@ exports.register = async (req, res, next) => {
       validateModifiedOnly: true,
     });
 
-    // generate an otp and send to email
+    // generate an otp and send to email `email`
     req.userId = existing_user._id;
     next();
   } else {
