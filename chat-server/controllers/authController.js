@@ -285,7 +285,7 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
     passwordResetExpires: { $gt: Date.now() },
   });
 
-  // 2) If token has not expired, and there is user, set the new password
+  // 2) If token has not expired, and there is user, set the new password and update passwordChangedAt property for the user
   if (!user) {
     return res.status(400).json({
       status: "error",
