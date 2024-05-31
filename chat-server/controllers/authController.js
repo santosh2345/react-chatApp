@@ -28,7 +28,7 @@ exports.register = async (req, res, next) => {
     "password"
   );
 
-  // check if a verified user with given email exists
+  // check if a verified user with given email exists or not
 
   const existing_user = await User.findOne({ email: email });
 
