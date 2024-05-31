@@ -3,7 +3,7 @@ const otpGenerator = require("otp-generator");
 const mailService = require("../services/mailer");
 const crypto = require("crypto");
 
-const filterObj = require("../utils/filterObj");
+const filterObj = require("../utils/filterObj");    // this is the filterObj file where the filterObj function is defined
 
 // Model
 const User = require("../models/user");
@@ -15,7 +15,7 @@ const catchAsync = require("../utils/catchAsync");
 // this function will return you jwt token
 const signToken = (userId) => jwt.sign({ userId }, process.env.JWT_SECRET);
 
-// Register New User
+// Register New User or Update Existing User
 
 exports.register = async (req, res, next) => {
   const { firstName, lastName, email, password } = req.body;
