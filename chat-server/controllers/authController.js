@@ -223,7 +223,7 @@ exports.protect = catchAsync(async (req, res, next) => {
     });
   }
 
-  // GRANT ACCESS TO PROTECTED ROUTE
+  // GRANT ACCESS TO PROTECTED ROUTE (this_user)
   req.user = this_user;
   next();
 });
