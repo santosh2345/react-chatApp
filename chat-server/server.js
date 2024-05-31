@@ -43,7 +43,7 @@ mongoose
     console.log("db connection is successfull");
   })
   .catch((err) => {
-    console.log("some errors found out seeeeeeeeeeeeeeeeeeee here", err);
+    console.log("some errors found out here", err);
   });
 
 const port = process.env.PORT || 8000;
