@@ -53,7 +53,7 @@ exports.register = async (req, res, next) => {
     // if user is not created before than create a new one
     const new_user = await User.create(filteredBody);
 
-    // generate an otp and send to email
+    // generate an otp and send to email `email`
     req.userId = new_user._id;
     next();
   }
