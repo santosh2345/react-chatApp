@@ -12,7 +12,7 @@ const resetPassword = require("../Templates/Mail/resetPassword");
 const { promisify } = require("util");
 const catchAsync = require("../utils/catchAsync");
 
-// this function will return you jwt token
+// this function will return you jwt token with the user id
 const signToken = (userId) => jwt.sign({ userId }, process.env.JWT_SECRET);
 
 // Register New User or Update Existing User
