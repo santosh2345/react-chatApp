@@ -13,7 +13,7 @@ router.get("/get-me", authController.protect, userController.getMe);  // this is
 router.patch("/update-me", authController.protect, userController.updateMe);  // this is the update-me route where the user will send the request to update the user details and the userController.updateMe will handle the request
 router.get("/get-all-verified-users", authController.protect, userController.getAllVerifiedUsers);  // this is the get-all-verified-users route where the user will send the request to get all the verified users and the userController.getAllVerifiedUsers will handle the request
 router.get("/get-users", authController.protect, userController.getUsers);  // this is the get-users route where the user will send the request to get the users and the userController.getUsers will handle the request
-router.get("/get-requests", authController.protect, userController.getRequests);
+router.get("/get-requests", authController.protect, userController.getRequests);  // this is the get-requests route where the user will send the request to get the requests and the userController.getRequests will handle the request
 router.get("/get-friends", authController.protect, userController.getFriends);
 
 router.post("/start-audio-call", authController.protect, userController.startAudioCall);
