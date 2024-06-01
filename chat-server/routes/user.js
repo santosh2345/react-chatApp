@@ -9,7 +9,7 @@ router.post(
   userController.generateZegoToken
 );
 router.get("/get-call-logs", authController.protect, userController.getCallLogs);  // this is the get-call-logs route where the user will send the request to get the call logs and the userController.getCallLogs will handle the request
-router.get("/get-me", authController.protect, userController.getMe);
+router.get("/get-me", authController.protect, userController.getMe);  // this is the get-me route where the user will send the request to get the user details and the userController.getMe will handle the request
 router.patch("/update-me", authController.protect, userController.updateMe);
 router.get("/get-all-verified-users", authController.protect, userController.getAllVerifiedUsers);
 router.get("/get-users", authController.protect, userController.getUsers);
