@@ -16,7 +16,7 @@ router.get("/get-users", authController.protect, userController.getUsers);  // t
 router.get("/get-requests", authController.protect, userController.getRequests);  // this is the get-requests route where the user will send the request to get the requests and the userController.getRequests will handle the request
 router.get("/get-friends", authController.protect, userController.getFriends);  // this is the get-friends route where the user will send the request to get the friends and the userController.getFriends will handle the request
 
-router.post("/start-audio-call", authController.protect, userController.startAudioCall);
+router.post("/start-audio-call", authController.protect, userController.startAudioCall);  // this is the start-audio-call route where the user will send the request to start the audio call and the userController.startAudioCall will handle the request
 router.post("/start-video-call", authController.protect, userController.startVideoCall);
 
 
