@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-const userController = require("../controllers/userController");
+const userController = require("../controllers/userController");  // this is the userController file where the userController functions are defined
 const authController = require("../controllers/authController");
 
 // this is the get-all-users route where the user will send the request to get all the users and the userController.getAllUsers will handle the request
