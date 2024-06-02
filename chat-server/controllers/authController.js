@@ -58,7 +58,8 @@ exports.register = async (req, res, next) => {
     const new_user = await User.create(filteredBody);
 
     // generate an otp and send to email `email`
-    req.userId = new_user._id;
+
+    req.userId = new_user._id; // this userId can be accessed in the next middleware which is used  
     next();
   }
 };
