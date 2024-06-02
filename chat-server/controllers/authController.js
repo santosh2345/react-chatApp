@@ -40,7 +40,9 @@ exports.register = async (req, res, next) => {
       status: "error",
       message: "Email already in use, Please login.",
     });
-  } else if (existing_user) {
+  }
+  // if user is not verified than update prev one
+  else if (existing_user) {
     // if not verified than update prev one
 
     await User.findOneAndUpdate({ email: email }, filteredBody, {
