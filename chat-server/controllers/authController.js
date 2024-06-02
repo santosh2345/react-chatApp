@@ -20,6 +20,7 @@ const signToken = (userId) => jwt.sign({ userId }, process.env.JWT_SECRET);
 exports.register = async (req, res, next) => {
   const { firstName, lastName, email, password } = req.body;
 
+    // check if all the required fields are present or not
   const filteredBody = filterObj(
     req.body,
     "firstName",
