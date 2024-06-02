@@ -59,7 +59,7 @@ exports.register = async (req, res, next) => {
 
     // generate an otp and send to email `email`
 
-    req.userId = new_user._id; // this userId can be accessed in the next middleware which is used  in the /register route 
+    req.userId = new_user._id; // this userId can be accessed in the next middleware which is used  in the /register route (first one was authcontroller.register ad)
     next();
   }
 };
