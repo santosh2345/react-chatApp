@@ -75,6 +75,7 @@ exports.sendOTP = catchAsync(async (req, res, next) => {
     lowerCaseAlphabets: false,
   });
 
+   // OTP expiry time is 10 mins
   const otp_expiry_time = Date.now() + 10 * 60 * 1000; // 10 Mins after otp is sent to user for verification
 
   const user = await User.findByIdAndUpdate(userId, {
