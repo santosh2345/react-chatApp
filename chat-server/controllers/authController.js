@@ -64,6 +64,9 @@ exports.register = async (req, res, next) => {
   }
 };
 
+
+
+//  Send OTP to the user
 exports.sendOTP = catchAsync(async (req, res, next) => {
   const { userId } = req;
   const new_otp = otpGenerator.generate(6, {
