@@ -81,6 +81,7 @@ exports.sendOTP = catchAsync(async (req, res, next) => {
     otp_expiry_time: otp_expiry_time,
   });
 
+  // `new_otp` is the otp generated for the user
   user.otp = new_otp.toString();
 
   await user.save({ new: true, validateModifiedOnly: true });
