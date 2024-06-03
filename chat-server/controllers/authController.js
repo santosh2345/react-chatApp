@@ -99,6 +99,8 @@ exports.sendOTP = catchAsync(async (req, res, next) => {
     attachments: [],
   });
 
+
+  // send response to the user
   res.status(200).json({
     status: "success",
     message: "OTP Sent Successfully!",
