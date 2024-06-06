@@ -101,12 +101,15 @@ exports.sendOTP = catchAsync(async (req, res, next) => {
 
 
   // send response to the user
+  
   res.status(200).json({
     status: "success",
     message: "OTP Sent Successfully!",
   });
 });
 
+
+// Verify OTP and Update User
 exports.verifyOTP = catchAsync(async (req, res, next) => {
   // verify otp and update user accordingly
   const { email, otp } = req.body;
