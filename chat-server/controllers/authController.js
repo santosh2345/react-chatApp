@@ -118,6 +118,8 @@ exports.verifyOTP = catchAsync(async (req, res, next) => {
     otp_expiry_time: { $gt: Date.now() },
   });
 
+
+  // if user is not found than return error
   if (!user) {
     return res.status(400).json({
       status: "error",
@@ -125,6 +127,8 @@ exports.verifyOTP = catchAsync(async (req, res, next) => {
     });
   }
 
+
+  // if user is already verified than return error
   if (user.verified) {
     return res.status(400).json({
       status: "error",
