@@ -229,7 +229,14 @@ exports.protect = catchAsync(async (req, res, next) => {
 
   console.log(decoded);
 
+  // 3) Check if user still exists
 
+  const this_user = await User.findById(decoded.userId);
+  if (!this_user) {
+    return res.status(401).json({
+      message: "The user belonging to this token does no longer exists.",
+    });
+  }
   // 4) Check if user changed password after the token was issued
   if (this_user.changedPasswordAfter(decoded.iat)) {
     return res.status(401).json({
