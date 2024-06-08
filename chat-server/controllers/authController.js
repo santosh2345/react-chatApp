@@ -244,20 +244,7 @@ exports.protect = catchAsync(async (req, res, next) => {
     });
   }
 
-  // GRANT ACCESS TO PROTECTED ROUTE (this_user)
-  req.user = this_user;
-  next();
-});
 
-exports.forgotPassword = catchAsync(async (req, res, next) => {
-  // 1) Get user based on POSTed email
-  const user = await User.findOne({ email: req.body.email });
-  if (!user) {
-    return res.status(404).json({
-      status: "error",
-      message: "There is no user with this email address.",
-    });
-  }
 
   // 2) Generate the random reset token and save it to the user
   const resetToken = user.createPasswordResetToken();
