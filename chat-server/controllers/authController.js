@@ -128,7 +128,7 @@ exports.verifyOTP = catchAsync(async (req, res, next) => {
   }
 
 
-  // if user is already verified than return error
+  // if user is already verified than return error 
   if (user.verified) {
     return res.status(400).json({
       status: "error",
@@ -175,6 +175,7 @@ exports.login = catchAsync(async (req, res, next) => {
     return;
   }
 
+  //  Check if email and password exist
   const user = await User.findOne({ email: email }).select("+password");
 
   if (!user || !user.password) {
