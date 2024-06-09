@@ -90,6 +90,17 @@ exports.getRequests = async (req, res, next) => {
   });
 };
 
+exports.getFriends = catchAsync(async (req, res, next) => {
+  const this_user = await User.findById(req.user._id).populate(
+    "friends",
+    "_id firstName lastName"
+  );
+  res.status(200).json({
+    status: "success",
+    data: this_user.friends,
+    message: "Friends found successfully!",
+  });
+});
 
 // Authorization authentication token generation
 
