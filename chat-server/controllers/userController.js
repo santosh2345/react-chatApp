@@ -25,7 +25,14 @@ exports.getMe = catchAsync(async (req, res, next) => {
 });
 
 
-
+exports.updateMe = catchAsync(async (req, res, next) => {
+  const filteredBody = filterObj(
+    req.body,
+    "firstName",
+    "lastName",
+    "about",
+    "avatar"
+  );
   const userDoc = await User.findByIdAndUpdate(req.user._id, filteredBody);
 
   res.status(200).json({
