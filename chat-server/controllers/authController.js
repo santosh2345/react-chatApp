@@ -41,7 +41,27 @@ exports.register = async (req, res, next) => {
       message: "Email already in use, Please login.",
     });
   }
- 
+  // if user is not verified than update prev one
+  else if (existing_user) {
+    // if not verified than update prev one
+
+    await User.findOneAndUpdate({ email: email }, filteredBody, {
+      new: true,
+      validateModifiedOnly: true,
+    });
+
+    // generate an otp and send to email `email`
+    req.userId = existing_user._id;
+    next();
+  } else {
+    // if user is not created before than create a new one
+    const new_user = await User.create(filteredBody);
+
+    // generate an otp and send to email `email`
+
+    req.userId = new_user._id; // this userId can be accessed in the next middleware which is used  in the /register route (first one was authcontroller.register and the second one is authControllerl.sendOTP)
+    next();
+  }
 };
 
 
