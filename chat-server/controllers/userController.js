@@ -13,16 +13,7 @@ const { generateToken04 } = require("./zegoServerAssistant");
 // Example: 1234567890
 const appID = process.env.ZEGO_APP_ID; // type: number
 
-// Please change serverSecret to your serverSecret, serverSecret is string
-// Example：'sdfsdfsd323sdfsdf'
-const serverSecret = process.env.ZEGO_SERVER_SECRET; // type: 32 byte length string
 
-exports.getMe = catchAsync(async (req, res, next) => {
-  res.status(200).json({
-    status: "success",
-    data: req.user,
-  });
-});
 
 
 exports.updateMe = catchAsync(async (req, res, next) => {
