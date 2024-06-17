@@ -102,7 +102,7 @@ exports.getFriends = catchAsync(async (req, res, next) => {
   });
 });
 
-// Authorization authentication token generation
+// Authorization authentication token generation for Zego
 
 exports.generateZegoToken = catchAsync(async (req, res, next) => {
   try {
