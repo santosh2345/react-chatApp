@@ -176,12 +176,12 @@ exports.login = catchAsync(async (req, res, next) => {
   }
 
   //  Check if email and password exist
-  const user = await User.findOne({ email: email }).select("+password");
+  const user = await User.findOne({ email: email }).select("+password"); // 
 
   if (!user || !user.password) {
     res.status(400).json({
       status: "error",
-      message: "Incorrect password",
+      message: "User not found!",
     });
 
     return;
