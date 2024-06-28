@@ -196,14 +196,17 @@ exports.login = catchAsync(async (req, res, next) => {
     return;
   }
 
-  const token = signToken(user._id);
+  const token = signToken(user._id); //generating the token and sending to the user
 
+     
   res.status(200).json({
     status: "success",
     message: "Logged in successfully!",
     token,
     user_id: user._id,
   });
+ 
+
 });
 
 // Protect
