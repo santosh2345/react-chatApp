@@ -40,7 +40,7 @@ const limiter = rateLimit({
   message: "Too many requests from this IP, Please try again in an hour",
 });
 
-app.use("/kurakani", limiter);
+app.use("/kurakani", limiter);  // this will only allow 1000 request in an hour to the end point /kurakani  and if the user send more than 1000 request in an hour then it will show the message "Too many requests from this IP, Please try again in an hour"
 
 // app.use(
 //   express.urlencoded({
@@ -51,7 +51,7 @@ app.use("/kurakani", limiter);
 // app.use(mongosanitize());
 // app.use(xss());
 
-app.use(routes);
+app.use(routes); // this will use the routes file and all the routes are defined in the routes file
 
 module.exports = app;
 

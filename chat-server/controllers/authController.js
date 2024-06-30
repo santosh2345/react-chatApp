@@ -187,6 +187,7 @@ exports.login = catchAsync(async (req, res, next) => {
     return;
   }
 
+  // Check if user is verified or not 
   if (!user || !(await user.correctPassword(password, user.password))) {
     res.status(400).json({
       status: "error",
@@ -198,7 +199,7 @@ exports.login = catchAsync(async (req, res, next) => {
 
   const token = signToken(user._id); //generating the token and sending to the user
 
-     
+     // send response to the user with the token and user id 
   res.status(200).json({
     status: "success",
     message: "Logged in successfully!",

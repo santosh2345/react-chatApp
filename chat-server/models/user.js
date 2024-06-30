@@ -77,9 +77,10 @@ const userSchema = new mongoose.Schema({
   },
 });
 
+ // this is the middleware which will run before the find query is executed  and this will only show the users which are verified
 userSchema.pre("save", async function (next) {
   // Only run this function if password was actually modified
-  if (!this.isModified("otp") || !this.otp) return next();
+  if (!this.isModified("otp") || !this.otp) return next(); // if the otp is not modified then it will return next and will not run the below code
 
   // Hash the otp with cost of 12
   this.otp = await bcrypt.hash(this.otp.toString(), 12);
@@ -94,7 +95,7 @@ userSchema.pre("save", async function (next) {
   if (!this.isModified("password") || !this.password) return next();
 
   // Hash the password with cost of 12
-  this.password = await bcrypt.hash(this.password, 12);
+  this.password = await bcrypt.hash(this.password, 12); // this will hash the password with the cost of 12
 
   //! Shift it to next hook // this.passwordChangedAt = Date.now() - 1000;
 
@@ -102,10 +103,11 @@ userSchema.pre("save", async function (next) {
 });
 
 userSchema.pre("save", function (next) {
+    // Only run this function if password was actually modified
   if (!this.isModified("password") || this.isNew || !this.password)
     return next();
 
-  this.passwordChangedAt = Date.now() - 1000;
+  this.passwordChangedAt = Date.now() - 1000; // this will set the passwordChangedAt to the current time - 1 second
   next();
 });
 
@@ -113,17 +115,17 @@ userSchema.methods.correctPassword = async function (
   candidatePassword,
   userPassword
 ) {
-  return await bcrypt.compare(candidatePassword, userPassword);
+  return await bcrypt.compare(candidatePassword, userPassword); // this will compare the candidate password with the user password and will return the boolean value
 };
 
 userSchema.methods.correctOTP = async function (candidateOTP, userOTP) {
   return await bcrypt.compare(candidateOTP, userOTP);
 };
 
-userSchema.methods.changedPasswordAfter = function (JWTTimeStamp) {
+userSchema.methods.changedPasswordAfter = function (JWTTimeStamp) { // this will check if the password is changed after the JWTTimeStamp
   if (this.passwordChangedAt) {
     const changedTimeStamp = parseInt(
-      this.passwordChangedAt.getTime() / 1000,
+      this.passwordChangedAt.getTime() / 1000, 
       10
     );
     return JWTTimeStamp < changedTimeStamp;
@@ -141,7 +143,7 @@ userSchema.methods.createPasswordResetToken = function () {
     .update(resetToken)
     .digest("hex");
 
-  this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
+  this.passwordResetExpires = Date.now() + 10 * 60 * 1000; // 
 
   return resetToken;
 };
