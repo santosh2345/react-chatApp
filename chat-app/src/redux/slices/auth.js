@@ -36,7 +36,7 @@ const slice = createSlice({
 
 export default slice.reducer;
 
-// Log in
+// Log in user   // this is the action that will be dispatched when the user will try to login
 export function LoginUser(formValues) {
   // formValues= {email, password}
   return async (dispatch, getState) => {
@@ -53,7 +53,7 @@ export function LoginUser(formValues) {
           },
         }
       )
-      .then(function (response) {
+      .then(function (response) {  // if the request is successful then the response will be received here
         console.log(response);
         dispatch(
           slice.actions.logIn({
@@ -61,6 +61,7 @@ export function LoginUser(formValues) {
             token: response.data.token,
           })
         );
+        // setting the user_id in the local storage
         window.localStorage.setItem("user_id", response.data.user_id);
 
         dispatch(
