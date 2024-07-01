@@ -11,4 +11,5 @@ router.post("/send-otp", authController.sendOTP);   // this is the send-otp rout
 router.post("/forgot-password", authController.forgotPassword); // this is the forgot-password route where the user will send the request to forgot the password and the authController.forgotPassword will handle the request
 router.post("/reset-password", authController.resetPassword);   // this is the reset-password route where the user will send the request to reset the password and the authController.resetPassword will handle the request
 
+// export the router module so that it can be used in the server.js file
 module.exports = router;
