@@ -18,11 +18,14 @@ import { Link as RouterLink } from "react-router-dom";
 import { LoginUser } from "../../redux/slices/auth";
 import { useDispatch } from "react-redux";
 
+
+//  login form component that will render the login form and social auth
 const LoginForm = () => {
-  const dispatch = useDispatch();
-  const theme = useTheme();
-  const [showPassword, setShowPassword] = useState(false);
-  const LoginSchema = Yup.object().shape({
+  const dispatch = useDispatch(); // dispatch function to dispatch the action to the store to update the state
+  const theme = useTheme(); // theme object to get the theme
+  const [showPassword, setShowPassword] = useState(false); // state to toggle the password visibility
+   // login form schema to validate the form
+  const LoginSchema = Yup.object().shape({ 
     email: Yup.string()
       .required("Email is Required")
       .email("Email must be a valid email address"),
@@ -45,13 +48,14 @@ const LoginForm = () => {
     formState: { errors, isSubmitting, isSubmitSuccessful },
   } = methods;
 
+  // submit function that will be called when the form is submitted
   const onSubmit = async (data) => {
     try {
       //submit    data to backend
-      dispatch(LoginUser(data));
+      dispatch(LoginUser(data)); // dispatch the action to the store to update the state
     } catch (error) {
       console.log(error);
-      reset();
+      reset(); // reset the form fields
       setError("afterSubmit", {
         ...error,
         message: error.message,
@@ -59,6 +63,8 @@ const LoginForm = () => {
     }
   };
   return (
+
+    // FormProvider component to provide the form methods to the form fields
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={3}>
         {!!errors.afterSubmit && (

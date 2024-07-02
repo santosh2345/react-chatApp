@@ -210,7 +210,7 @@ exports.login = catchAsync(async (req, res, next) => {
 
 });
 
-// Protect
+// Logout User and Clear Cookie 
 exports.protect = catchAsync(async (req, res, next) => {
   // 1) Getting token and check if it's there or not
   let token;
