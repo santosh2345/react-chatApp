@@ -3,6 +3,8 @@ import React from 'react'
 import VerifyForm from '../../sections/auth/VerifyForm'
 
 const Verify = () => {
+
+  // verify component that will render the verify form
   return (
     <>
      <Stack spacing={2} sx={{ mb: 5, position: "relative" }}>

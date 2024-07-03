@@ -23,6 +23,7 @@ function App() {
   const dispatch = useDispatch();
   
 
+  //  snackbar state from the store  // this is the state that will be used to show the snackbar
   const { severity, message, open } = useSelector(
     (state) =>{
       // console.log("redux items are called");

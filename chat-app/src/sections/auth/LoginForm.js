@@ -36,6 +36,7 @@ const LoginForm = () => {
     password: "Example4@3453",
   };
 
+  // useForm hook to get the form methods
   const methods = useForm({
     resolver: yupResolver(LoginSchema),
     defaultValues,
