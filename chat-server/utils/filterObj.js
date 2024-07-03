@@ -9,4 +9,5 @@ const filterObj = (obj, ...allowedFields) => {
   return newObj;
 };
 
+// Export the filterObj function
 module.exports = filterObj;
