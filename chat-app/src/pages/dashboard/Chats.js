@@ -29,6 +29,7 @@ const user_id = window.localStorage.getItem("user_id");
 const Chats = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const theme = useTheme();
+  //  snackbar state from the store  // this is the state that will be used to show the snackbar
   const { conversations } = useSelector(
     (state) => state.conversation.direct_chat
   );
