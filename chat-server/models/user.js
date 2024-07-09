@@ -102,6 +102,7 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
+// this is the middleware which will run before the find query is executed  and this will only show the users which are verified
 userSchema.pre("save", function (next) {
     // Only run this function if password was actually modified
   if (!this.isModified("password") || this.isNew || !this.password)
@@ -122,6 +123,7 @@ userSchema.methods.correctOTP = async function (candidateOTP, userOTP) {
   return await bcrypt.compare(candidateOTP, userOTP);
 };
 
+// this will check if the password is changed after the JWTTimeStamp
 userSchema.methods.changedPasswordAfter = function (JWTTimeStamp) { // this will check if the password is changed after the JWTTimeStamp
   if (this.passwordChangedAt) {
     const changedTimeStamp = parseInt(
@@ -135,9 +137,12 @@ userSchema.methods.changedPasswordAfter = function (JWTTimeStamp) { // this will
   return false;
 };
 
+
+// this will create the password reset token and will return the reset token
 userSchema.methods.createPasswordResetToken = function () {
   const resetToken = crypto.randomBytes(32).toString("hex");
 
+  // this will hash the reset token and will save it to the passwordResetToken
   this.passwordResetToken = crypto
     .createHash("sha256")
     .update(resetToken)
@@ -148,5 +153,7 @@ userSchema.methods.createPasswordResetToken = function () {
   return resetToken;
 };
 
+
+// this will create the OTP and will return the OTP to the user
 const User = new mongoose.model("User", userSchema);
 module.exports = User;
