@@ -112,6 +112,7 @@ userSchema.pre("save", function (next) {
   next();
 });
 
+// this is the middleware which will run before the find query is executed  and this will only show the users which are verified
 userSchema.methods.correctPassword = async function (
   candidatePassword,
   userPassword
