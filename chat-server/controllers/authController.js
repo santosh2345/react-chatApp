@@ -277,8 +277,15 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
 
 
     // send mail to the user with the reset password link
-   
+    mailService.sendEmail({
+      from: "shreyanshshah242@gmail.com",
+      to: user.email,
+      subject: "Reset Password",
+      html: resetPassword(user.firstName, resetURL),
+      attachments: [],
+    });
 
+    // send response to the user that the token is sent to the email
     res.status(200).json({
       status: "success",
       message: "Token sent to email!",
