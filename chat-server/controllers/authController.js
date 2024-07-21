@@ -197,6 +197,7 @@ exports.login = catchAsync(async (req, res, next) => {
     return;
   }
 
+  //make sure the user is verified or not
   const token = signToken(user._id); //generating the token and sending to the user
 
      // send response to the user with the token and user id 
@@ -285,7 +286,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
       attachments: [],
     });
 
-    // send response to the user that the token is sent to the email
+    // send response to the user that the token is sent to the emailgit
     res.status(200).json({
       status: "success",
       message: "Token sent to email!",
@@ -309,6 +310,7 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
     .update(req.body.token)
     .digest("hex");
 
+    // find the user with the hashed token and check if the token has expired or not
   const user = await User.findOne({
     passwordResetToken: hashedToken,
     passwordResetExpires: { $gt: Date.now() },
@@ -331,6 +333,7 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
   // 4) Log the user in, send JWT
   const token = signToken(user._id);
 
+  // send response to the user that the password is reseted successfully
   res.status(200).json({
     status: "success",
     message: "Password Reseted Successfully",

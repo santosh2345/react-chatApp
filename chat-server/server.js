@@ -175,6 +175,7 @@ io.on("connection", async (socket) => {
 
     const { message, conversation_id, from, to, type } = data;
 
+    // fetch user details of sender and receiver
     const to_user = await User.findById(to);
     const from_user = await User.findById(from);
 
@@ -239,6 +240,7 @@ io.on("connection", async (socket) => {
   socket.on("start_audio_call", async (data) => {
     const { from, to, roomID } = data;
 
+    // create a new audio call record in the database
     const to_user = await User.findById(to);
     const from_user = await User.findById(from);
 
