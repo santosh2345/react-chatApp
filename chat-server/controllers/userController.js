@@ -227,7 +227,7 @@ exports.getCallLogs = catchAsync(async (req, res, next) => {
       // incoming
       const other_user = elm.from;
 
-      // outgoing
+      // outgoing  // incoming
       call_logs.push({
         id: elm._id,
         img: other_user.avatar,
@@ -238,13 +238,13 @@ exports.getCallLogs = catchAsync(async (req, res, next) => {
       });
     }
   }
-
+      
   for (let element of video_calls) {
     const missed = element.verdict !== "Accepted";
     if (element.from._id.toString() === user_id.toString()) {
       const other_user = element.to;
 
-      // outgoing
+      // outgoing // incoming
       call_logs.push({
         id: element._id,
         img: other_user.avatar,
